@@ -8,6 +8,10 @@ datasets are taken from Kaggle Quora competition.
 * [gensim](https://radimrehurek.com/gensim/)
 * [torch](http://pytorch.org/)
 
+
+### Overview 
+![Overview](https://github.com/kumarnalinaksh21/kaggle/blob/master/NetworkArchitecture.png "Solution Overview")
+
 ## Feature Extraction on Sentences
 We extract doc2vec features on sentences using the *gensim* library and a pretrained doc2vec (DBOW) model trained on the English Wikipedia dataset.
 The pretrained model is available [here](https://ibm.box.com/s/3f160t4xpuya9an935k84ig465gvymm2).
