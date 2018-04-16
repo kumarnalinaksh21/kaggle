@@ -1,0 +1,24 @@
+#!/home/goku/anaconda2/bin/python
+import sys
+import csv
+import numpy as np
+import argparse
+CONVOLVESIZE = 3333
+text_ = open('log.info').readlines()
+loss_list = filter(lambda x:x.find('Loss:')>-1,text_);
+loss_list = map(lambda x: eval(x.strip().split()[-1].strip()),loss_list);
+print len(loss_list),"iterations found"
+loss_list = np.convolve(loss_list,[1.0/CONVOLVESIZE]*CONVOLVESIZE,mode='valid')
+import matplotlib
+matplotlib.use('Agg')
+colors = ['r','g','b','m','c','y','k','0.25','0.85']*10
+import matplotlib.pyplot as plt
+fig,ax = plt.subplots()
+plt.title('Training Set Performance')
+plt.xlabel('Iterations')
+plt.ylabel('Cross-Entropy Loss')
+ax.plot(range(len(loss_list)),loss_list,'r',label='myNet',linewidth=1)
+legend = ax.legend(loc='upper center',shadow=True,fontsize=8)
+ax.xaxis.grid(True)
+plt.grid()
+plt.savefig('lossplot.png')
